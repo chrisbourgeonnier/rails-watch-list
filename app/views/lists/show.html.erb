@@ -1,0 +1,21 @@
+<h1>My <%= @list.name %> List</h1>
+<h2> <%= pluralize(@list.movies.size, 'movie') %></h2>
+<br>
+<%= "You haven't saved any movies yet!" if @list.movies.empty? %>
+<br>
+<%= link_to "Add a movie",  new_list_bookmark_path(@list) %>
+<br>
+<% @list.movies.each do |movie| %>
+      <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+          <%= image_tag movie.poster_url, alt: movie.title %>
+            <%= movie.title %> • <%= movie.rating %>
+            <%= movie.overview %>
+            <%= bookmark.comment %>
+            <%# <%= link_to "delete", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure you want to remove #{movie.title} from your #{@list.name} list"} %>
+<% end %>
+<br>
+<%= link_to "go back to the lists", lists_path %>
+<br>
+<%# <%= link_to "delete this list", list_path(@list), method: :delete, data: { confirm: "Are you sure you want to delete this list?" } %>
+
+<%# <%= render "bookmarks/new", list: @list %>
