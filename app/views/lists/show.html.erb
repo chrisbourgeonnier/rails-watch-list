@@ -1,6 +1,6 @@
 <h1>My <%= @list.name %> List</h1>
 <h2> <%= pluralize(@list.movies.size, 'movie') %></h2>
-<%= cl_image_tag("cartoons.jpg", width: 400, height: 300, crop: :fill) %>
+<%= cl_image_tag(@list.photo.key, width: 400, height: 300, crop: :fill) %>
 <br>
 <%= "You haven't saved any movies yet!" if @list.movies.empty? %>
 <br>
